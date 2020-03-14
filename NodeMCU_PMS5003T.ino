@@ -1,5 +1,6 @@
 //20181212 rev 1.0
-//20181220 rev1.1 add alert led to highlight the air status
+//20181220 rev1.1 add alert led to highlight the air statuspdatre
+//20190613 update the sleeping timing to 3600sec
 
 #include <Wire.h>
 #include <ESP8266WiFi.h>
@@ -7,10 +8,10 @@
 
 SoftwareSerial mySerial(5, 14);//GPIO5,GPIO14 => rx,tx, need Rx to receive PMS data only
 
-const char* ssid = "xxxxxx";
-const char* password = "xxxxxx";
+const char* ssid = "elhomeo";
+const char* password = "39001678";
 const char* url = "api.thingspeak.com";
-String apiKey = "xxxxxx";
+String apiKey = "6IKUBPZBQXHCFRSV";
  
 // ESP-12 LED = GPIO2 & LED_BUILTIN = GPIO16
 // onboard led : LOW is ON, HIGH is OFF
@@ -215,7 +216,7 @@ void setup() {
 void loop(){
   bool send = false;
   catchPMS();
-  if ((millis() - last_time) > 1800000) {
+  if ((millis() - last_time) > 3600000) {
     send = ESP_send(String(temp),String(humi),String(pmat25),String(pmat100));
     if (send == true){
       eco_Mode(0);
@@ -227,7 +228,7 @@ void loop(){
   } else {
     digitalWrite(ledAlert, LOW);
   }
-  if ((digitalRead(PMS_SET) == LOW) && ((millis() - last_time) > 1750000)){
+  if ((digitalRead(PMS_SET) == LOW) && ((millis() - last_time) > 3550000)){
     eco_Mode(1);
   }
   led_change(1,2000,1000);

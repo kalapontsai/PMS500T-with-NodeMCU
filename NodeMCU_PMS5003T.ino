@@ -8,10 +8,10 @@
 
 SoftwareSerial mySerial(5, 14);//GPIO5,GPIO14 => rx,tx, need Rx to receive PMS data only
 
-const char* ssid = "elhomeo";
-const char* password = "39001678";
+const char* ssid = "";
+const char* password = "";
 const char* url = "api.thingspeak.com";
-String apiKey = "6IKUBPZBQXHCFRSV";
+String apiKey = "apikey";
  
 // ESP-12 LED = GPIO2 & LED_BUILTIN = GPIO16
 // onboard led : LOW is ON, HIGH is OFF
